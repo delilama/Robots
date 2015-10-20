@@ -100,7 +100,7 @@ public class Shared {
     /**
      * Types out the string using the default delay between keys
      *
-     * @param s
+     * @param s the string
      */
     public void TypeThis(String s) {
         this.TypeThis(s, _defaultDelayBetweenTypedKeys);
@@ -109,7 +109,7 @@ public class Shared {
     /**
      * Types out the string using the input delay between each key press
      *
-     * @param s
+     * @param s the string
      * @param delayTimeBetweenKeys In milliseconds
      */
     public void TypeThis(String s, int delayTimeBetweenKeys) {
@@ -143,11 +143,11 @@ public class Shared {
     /**
      * Gets the KeyEvent from a string
      *
-     * @param s
+     * @param s the string
      * @return A KeyPressDto
      */
     public KeyPressDto GetKeyPressDtoFromString(String s) {
-        if (s.isEmpty() || s == null)
+        if (s.isEmpty())
             throw new IllegalArgumentException("Input string was empty");
 
         KeyPressDto dto = new KeyPressDto();
@@ -411,15 +411,15 @@ public class Shared {
                 dto.ModifierKey = KeyEvent.VK_SHIFT;
                 break;
             case "(":
-                dto.VKey = KeyEvent.VK_LEFT_PARENTHESIS;
-                dto.ModifierKey = KeyEvent.VK_SHIFT;
-                break;
-            case ")":
                 dto.VKey = KeyEvent.VK_9;
                 dto.ModifierKey = KeyEvent.VK_SHIFT;
                 break;
-            case "_":
+            case ")":
                 dto.VKey = KeyEvent.VK_0;
+                dto.ModifierKey = KeyEvent.VK_SHIFT;
+                break;
+            case "_":
+                dto.VKey = KeyEvent.VK_MINUS;
                 dto.ModifierKey = KeyEvent.VK_SHIFT;
                 break;
             case "+":
@@ -537,7 +537,7 @@ public class Shared {
     }
 
     public List<KeyPressDto> ConvertStringToKeyPressDtos(String s){
-        List<KeyPressDto> list = new ArrayList<KeyPressDto>();
+        List<KeyPressDto> list = new ArrayList<>();
 
         if(s != null && s.length() > 0){
             String[] sArray = s.split("");
