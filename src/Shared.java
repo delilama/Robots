@@ -9,7 +9,7 @@ import java.util.List;
 public class Shared {
 
     private Robot _robot;
-    private int _defaultDelayBetweenTypedKeys = 40; //in milliseconds
+    private GraphicsDevice[] _screenSizeArray;
 
     public static class KeyPressDto {
 
@@ -32,10 +32,12 @@ public class Shared {
 
     public Shared(Robot robot) throws AWTException {
         this._robot = robot;
+        SetScreenSizeArray();
     }
 
     public Shared() throws AWTException {
         this._robot = new Robot();
+        SetScreenSizeArray();
     }
 
     public void LeftClick() {
@@ -103,6 +105,7 @@ public class Shared {
      * @param s the string
      */
     public void TypeThis(String s) {
+        int _defaultDelayBetweenTypedKeys = 40;
         this.TypeThis(s, _defaultDelayBetweenTypedKeys);
     }
 
@@ -555,11 +558,11 @@ public class Shared {
         return list;
     }
 
-    /*public void LockWindows() {
-        try {
-            Runtime.getRuntime().exec("rundll32 user32.dll,LockWorkStation");
-        } catch (java.io.IOException ioe) {
+    private void SetScreenSizeArray(){
+        _screenSizeArray = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+    }
 
-        }
-    }*/
+    public GraphicsDevice[] GetScreenSizeArray(){
+        return _screenSizeArray;
+    }
 }

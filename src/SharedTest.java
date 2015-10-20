@@ -1,7 +1,7 @@
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.Test;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class SharedTest {
         Shared shared = new Shared();
         String input = "Hi!\t";
 
-        List<Shared.KeyPressDto> expectedList = new ArrayList<Shared.KeyPressDto>();
+        List<Shared.KeyPressDto> expectedList = new ArrayList<>();
         expectedList.add(new Shared.KeyPressDto(KeyEvent.VK_SHIFT, KeyEvent.VK_H));
         expectedList.add(new Shared.KeyPressDto(-1, KeyEvent.VK_I));
         expectedList.add(new Shared.KeyPressDto(KeyEvent.VK_SHIFT, KeyEvent.VK_1));
@@ -63,5 +63,19 @@ public class SharedTest {
             Assert.assertEquals(actualDto.ModifierKey, expectedDto.ModifierKey, "ModifierKey did not match");
             Assert.assertEquals(actualDto.VKey, expectedDto.VKey, "VKey did not match");
         }
+    }
+
+    @Test
+    public void testScreenSizeSetup() throws Exception {
+        Shared shared = new Shared();
+        GraphicsDevice[] result = shared.GetScreenSizeArray();
+
+        Assert.assertNotNull(result, "Screen size array result was null");
+        Assert.assertEquals(result.length, 3, "Number of screens did not match");
+
+        /*for (GraphicsDevice aResult : result) {
+            int width = aResult.getDisplayMode().getWidth();
+            int height = aResult.getDisplayMode().getHeight();
+        }*/
     }
 }
