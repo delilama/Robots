@@ -71,7 +71,7 @@ public class SharedTest {
         GraphicsDevice[] result = shared.GetScreenSizeArray();
 
         Assert.assertNotNull(result, "Screen size array result was null");
-        Assert.assertEquals(result.length, 3, "Number of screens did not match");
+        Assert.assertEquals(result.length, 2, "Number of screens did not match");
 
         /*for (GraphicsDevice aResult : result) {
             int width = aResult.getDisplayMode().getWidth();
